@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новорічна відкритка</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+    }
+    .hidden {
+      display: none;
+    }
+    .santa {
+      width: 100px;
+      transition: transform 0.5s, opacity 0.5s;
+      opacity: 0.5;
+    }
+    .santa:hover {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    .snowman {
+      width: 80px;
+      margin: 20px auto;
+      cursor: pointer;
+      transition: transform 0.5s;
+    }
+    .snowman:active {
+      transform: rotate(360deg);
+    }
+    #tree {
+      margin: 20px auto;
+      width: 150px;
+      height: 200px;
+      background-color: green;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      cursor: pointer;
+    }
+    #tree:hover {
+      background-color: #006400;
+    }
+  </style>
+</head>
+<body>
+  <h1>З Новим Роком!</h1>
+  <div id="tree"></div>
+  <button id="showSanta">Показати Святого Миколая</button>
+  <img src="santa.png" alt="Святий Миколай" id="santa" class="hidden santa">
+  <div id="snowmanContainer">
+    <img src="snowman.png" alt="Сніговик" id="snowman" class="snowman">
+  </div>
+
+  <script>
+    // Показати/сховати Святого Миколая
+    document.getElementById("showSanta").addEventListener("click", function() {
+      const santa = document.getElementById("santa");
+      santa.classList.toggle("hidden");
+    });
+
+    // Змінити колір ялинки при кліку
+    const tree = document.getElementById("tree");
+    tree.addEventListener("click", function() {
+      tree.style.backgroundColor = tree.style.backgroundColor === "green" ? "red" : "green";
+    });
+
+    // Реакція на наведення на сніговика
+    const snowman = document.getElementById("snowman");
+    snowman.addEventListener("mouseover", function() {
+      alert("Сніговик каже: Зі святами!");
+    });
+
+    // Подвійний клік на сніговику
+    snowman.addEventListener("dblclick", function() {
+      snowman.style.transform = "rotate(360deg)";
+      setTimeout(() => snowman.style.transform = "rotate(0deg)", 1000);
+    });
+
+    // Контекстне меню на сніговику
+    snowman.addEventListener("contextmenu", function(event) {
+      event.preventDefault();
+      alert("Сніговик: Мої подарунки для тебе готові!");
+    });
+
+    // Зміна розміру сніговика при натисканні
+    snowman.addEventListener("mousedown", function() {
+      snowman.style.width = "100px";
+    });
+    snowman.addEventListener("mouseup", function() {
+      snowman.style.width = "80px";
+    });
+  </script>
+</body>
+</html>
